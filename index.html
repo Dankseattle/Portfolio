@@ -1,95 +1,344 @@
-<!-- Twitter-Style Project Feed -->
-<section id="tweet-feed" class="section">
-  <div class="container">
-    <h2 class="section-title">Project Feed</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daniel Kirk — Social Media & Digital Strategist</title>
+  <meta name="description" content="Award‑winning social strategist helping brands ship content that moves the needle. Portfolio, case studies, and contact." />
+  <meta name="theme-color" content="#5b67f1" />
+  <meta property="og:title" content="Daniel Kirk — Social Media & Digital Strategist" />
+  <meta property="og:description" content="Award‑winning social strategist helping brands ship content that moves the needle." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/og-image.jpg" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect rx='12' width='64' height='64' fill='%235b67f1'/%3E%3Ctext x='50%25' y='53%25' text-anchor='middle' font-size='36' font-family='Inter, system-ui, -apple-system, Segoe UI, Roboto' fill='white'%3EDK%3C/text%3E%3C/svg%3E" />
+  <style>
+    :root{
+      --bg-1:#0f1222; --bg-2:#1a1f3a; --card:#0f1222; --text:#e9ecff; --muted:#b9c0ff; --brand:#5b67f1; --brand-2:#8d56ff; --accent:#ff7a59; --ring: 0 0 0 3px color-mix(in oklab, var(--brand), white 20%);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Cantarell,sans-serif;color:var(--text);background: radial-gradient(1200px 600px at 15% -10%, #203, transparent),
+            radial-gradient(1000px 700px at 110% 10%, #021a35, transparent),
+            linear-gradient(180deg, var(--bg-1), var(--bg-2));
+         background-attachment: fixed;}
+    a{color:inherit}
+    .container{max-width:1100px;margin-inline:auto;padding:0 20px}
 
-    <div class="tweet-feed">
-      <div class="tweet" onclick="toggleDetails(this)">
-        <div class="tweet-header">
-          <span class="tweet-user">Dan Kirk</span> · <span class="tweet-time">T-Mobile</span>
-        </div>
-        <p class="tweet-preview">Launched Santa Calling with 2M+ organic impressions 🎅📱</p>
-        <div class="tweet-details">
-          <p>Created a digital Santa hotline to connect kids with Santa during lockdown. Shorty Award winner.</p>
-          <img src="https://user-images.githubusercontent.com/58638466/265236042-e40fcdb3-9a92-4971-ae77-7dc7e09a94f2.png" alt="T-Mobile Santa Calling" />
-        </div>
+    /* Skip link */
+    .skip{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip:focus{left:12px;top:12px;width:auto;height:auto;background:#0008;color:#fff;padding:.5rem .75rem;border-radius:.5rem;outline:var(--ring)}
+
+    /* Header */
+    header{position:sticky;top:0;backdrop-filter: blur(10px);background:color-mix(in oklab, var(--bg-2), black 10% / 65%);border-bottom:1px solid #ffffff14;z-index:50}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .logo{display:flex;gap:.6rem;align-items:center;font-weight:800;letter-spacing:.2px}
+    .logo-badge{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:linear-gradient(120deg,var(--brand),var(--brand-2));font-weight:900}
+    .logo span:last-child{opacity:.9}
+
+    .links{display:flex;gap:1rem;align-items:center}
+    .links a{padding:.5rem .75rem;border-radius:10px;text-decoration:none;color:var(--muted)}
+    .links a:is(:hover,:focus-visible){background:#ffffff10;color:white;outline:none}
+
+    /* Mobile nav */
+    .hamburger{display:none;background:none;border:0;inline-size:44px;block-size:44px;border-radius:10px;color:var(--text)}
+    .hamburger:focus-visible{outline:var(--ring)}
+    @media (max-width: 840px){
+      .links{display:none}
+      .hamburger{display:block}
+      .drawer{position:fixed;inset:0 0 auto auto;transform:translateY(-100%);transition:transform .35s ease;background:color-mix(in oklab, var(--bg-2), black 8%);border-bottom:1px solid #ffffff1a}
+      .drawer.open{transform:translateY(0)}
+      .drawer .container{display:grid;gap:.5rem;padding:1rem 20px 1.25rem}
+      .drawer a{padding:.75rem;border-radius:12px;color:var(--text);text-decoration:none}
+      .drawer a:hover{background:#ffffff10}
+    }
+
+    /* Hero */
+    .hero{display:grid;place-items:center;min-height:75svh;padding-block:8svh;position:relative;overflow:hidden}
+    .sparkle{position:absolute;inset:-10% -10% auto auto;pointer-events:none;opacity:.35;filter: blur(80px);background: conic-gradient(from 180deg at 60% 40%, var(--brand), var(--brand-2), var(--accent));width:900px;height:600px;transform: rotate(8deg)}
+    .hero h1{font-size:clamp(2rem, 3.5vw + 1rem, 3.5rem);line-height:1.1;letter-spacing:.2px;margin:0 0 10px;background: linear-gradient(90deg,#fff, #dfe2ff 40%, #c6ccff);-webkit-background-clip:text; background-clip:text;-webkit-text-fill-color:transparent}
+    .hero p{max-width:65ch;color:var(--muted);margin:0 0 26px}
+    .hero .cta{display:inline-flex;gap:.6rem;align-items:center;padding:.9rem 1.1rem;border-radius:14px;border:1px solid #ffffff26;background:linear-gradient(120deg,color-mix(in oklab,var(--brand),white 10%),color-mix(in oklab,var(--brand-2),white 10%));color:white;text-decoration:none;font-weight:700;box-shadow:0 10px 40px #0006}
+    .cta:focus-visible{outline:var(--ring)}
+    .cta small{font-weight:600;opacity:.85}
+
+    /* Sections */
+    section{padding-block:70px}
+    .section-title{font-size:clamp(1.6rem,2.5vw+1rem,2.4rem);margin:0 0 26px}
+    .muted{color:var(--muted)}
+
+    .about{display:grid;grid-template-columns:260px 1fr;gap:2rem;align-items:start}
+    .avatar{width:260px;aspect-ratio:1/1;border-radius:22px;box-shadow:0 10px 40px #0006;display:block;object-fit:cover}
+    .about p{margin:.4rem 0}
+    @media (max-width: 840px){.about{grid-template-columns:1fr}.avatar{width:180px;margin-inline:auto;}}
+
+    /* Skill cards */
+    .grid{display:grid;gap:16px}
+    .grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    @media (max-width: 900px){.grid.cols-3{grid-template-columns:1fr 1fr}}
+    @media (max-width: 600px){.grid.cols-3{grid-template-columns:1fr}}
+    .card{background:linear-gradient(180deg, #ffffff0a, #ffffff06);border:1px solid #ffffff1a;border-radius:16px;padding:18px}
+    .card h3{margin:.2rem 0 .3rem;font-size:1.05rem}
+
+    /* Portfolio */
+    .work-grid{display:grid;gap:18px;grid-template-columns:repeat(12,minmax(0,1fr))}
+    .work{grid-column:span 6;background:linear-gradient(180deg,#ffffff0f,#ffffff08);border:1px solid #ffffff14;border-radius:18px;overflow:hidden;display:grid}
+    .work-header{position:relative;aspect-ratio:16/9;background:linear-gradient(120deg,var(--brand),var(--brand-2));display:grid;place-items:center;color:white;font-weight:800}
+    .badge{position:absolute;top:12px;left:12px;background:#000a;color:#fff;padding:.28rem .55rem;border-radius:.6rem;font-size:.75rem;border:1px solid #ffffff1f}
+    .work-body{padding:16px}
+    .work-title{display:flex;gap:.5rem;align-items:center;justify-content:space-between}
+    .work-title h3{margin:0;font-size:1.05rem}
+    .tags{display:flex;flex-wrap:wrap;gap:.38rem}
+    .tag{font-size:.72rem;padding:.22rem .5rem;border-radius:.5rem;border:1px solid #ffffff22;color:var(--muted)}
+    .work p{color:var(--muted);margin:.45rem 0 .7rem}
+    .work a{display:inline-flex;gap:.45rem;align-items:center;text-decoration:none;font-weight:700;color:white}
+    .work a:hover{opacity:.9}
+    @media (max-width: 980px){.work{grid-column:span 12}}
+
+    /* Stats */
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    @media (max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:520px){.stats{grid-template-columns:1fr}}
+    .stat{background:linear-gradient(180deg,#ffffff0c,#ffffff06);border:1px solid #ffffff1a;border-radius:16px;padding:20px;text-align:center}
+    .num{font-size:2rem;font-weight:900}
+
+    /* Contact */
+    form{display:grid;gap:12px}
+    input,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #ffffff2a;background:#0f1222;color:var(--text)}
+    input:focus,textarea:focus{outline:var(--ring);border-color:transparent}
+    .btn{display:inline-flex;align-items:center;gap:.55rem;border:1px solid #ffffff2a;background:linear-gradient(120deg,var(--brand),var(--brand-2));color:white;padding:.8rem 1rem;border-radius:12px;font-weight:800}
+
+    /* Reveal on scroll */
+    .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease}
+    .reveal.show{opacity:1;transform:none}
+
+    /* Motion preferences */
+    @media (prefers-reduced-motion: reduce){
+      .reveal{transition:none}
+      .sparkle{display:none}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header>
+    <nav class="nav container" aria-label="Primary">
+      <a class="logo" href="#home" aria-label="Go to start">
+        <span class="logo-badge">DK</span><span>Daniel Kirk</span>
+      </a>
+      <div class="links" role="menubar">
+        <a role="menuitem" href="#about">About</a>
+        <a role="menuitem" href="#expertise">Expertise</a>
+        <a role="menuitem" href="#work">Work</a>
+        <a role="menuitem" href="#results">Results</a>
+        <a role="menuitem" href="#contact">Contact</a>
       </div>
-
-      <div class="tweet" onclick="toggleDetails(this)">
-        <div class="tweet-header">
-          <span class="tweet-user">Dan Kirk</span> · <span class="tweet-time">Starbucks</span>
-        </div>
-        <p class="tweet-preview">Launched Doubleshot with top YouTubers ☕️🎥</p>
-        <div class="tweet-details">
-          <p>Built creator-led content series with MatPat, Aaron Kyro, and Unbox Therapy. Generated 1.2M views and 7X growth.</p>
-          <img src="https://user-images.githubusercontent.com/58638466/265236076-ec1b4c7f-3184-41c3-949e-5b0c4576a748.jpg" alt="Starbucks Doubleshot YouTube" />
-        </div>
-      </div>
-
-      <div class="tweet" onclick="toggleDetails(this)">
-        <div class="tweet-header">
-          <span class="tweet-user">Dan Kirk</span> · <span class="tweet-time">Salesforce</span>
-        </div>
-        <p class="tweet-preview">Orchestrated 70+ Cyber Week posts with 30% higher engagement 📈</p>
-        <div class="tweet-details">
-          <p>Drove record performance through smart creative, AI integrations, and channel-specific planning.</p>
-          <img src="https://user-images.githubusercontent.com/58638466/265236112-81d1790b-c3c3-40ff-a36c-fbd50ae011b0.png" alt="Salesforce Cyber Week posts" />
-        </div>
+      <button class="hamburger" aria-label="Open menu" aria-controls="drawer" aria-expanded="false">☰</button>
+    </nav>
+    <div id="drawer" class="drawer" hidden>
+      <div class="container">
+        <a href="#about">About</a>
+        <a href="#expertise">Expertise</a>
+        <a href="#work">Work</a>
+        <a href="#results">Results</a>
+        <a href="#contact">Contact</a>
       </div>
     </div>
-  </div>
-</section>
+  </header>
 
-<style>
-.tweet-feed {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  max-width: 600px;
-  margin: 0 auto;
-}
+  <main id="main">
+    <section id="home" class="hero container">
+      <div class="sparkle" aria-hidden="true"></div>
+      <div>
+        <h1>Social Media & Digital Strategist</h1>
+        <p class="muted">I help brands ship social that actually performs — turning research, creativity, and community into campaigns people remember.</p>
+        <a class="cta" href="#work">View my work <small>↓</small></a>
+      </div>
+    </section>
 
-.tweet {
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #ddd;
-  cursor: pointer;
-}
+    <section id="about" class="container">
+      <h2 class="section-title">About</h2>
+      <div class="about reveal">
+        <img class="avatar" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA/4AAARVCAYAAAAE4BtuAAAAAXNSR0IArs4c6QAAIABJREFUeF7s3euzZPd13venL3v3vc9tLh..." alt="Portrait of Daniel Kirk" decoding="async" loading="eager" />
+        <div>
+          <p><strong>Hi, I'm Dan.</strong> I've launched lattes, leveled up enterprise tech, and made robot cars feel relatable. After a decade leading social at Starbucks, T‑Mobile, Salesforce, and Cruise, I build content systems that grow audiences and protect brands.</p>
+          <p class="muted">Focus areas: LinkedIn strategy, executive voice programs, product launch playbooks, measurement frameworks, and creative direction for short‑form video.</p>
+        </div>
+      </div>
+    </section>
 
-.tweet-header {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 4px;
-}
+    <section id="expertise" class="container">
+      <h2 class="section-title">Expertise</h2>
+      <div class="grid cols-3 reveal" aria-label="Skill areas">
+        <article class="card"><h3>Strategy & Ops</h3><p class="muted">Editorial roadmaps, channel mix, governance, and repeatable workflows that scale content quality.</p></article>
+        <article class="card"><h3>Creative & Production</h3><p class="muted">Scriptwriting, design direction, and on‑site capture kits for events like Dreamforce & VidCon.</p></article>
+        <article class="card"><h3>Insights & Safety</h3><p class="muted">Performance analysis, experimentation, and crisis comms that keep you ahead of the internet.</p></article>
+      </div>
+    </section>
 
-.tweet-user {
-  font-weight: 600;
-}
+    <section id="work" class="container">
+      <h2 class="section-title">Featured Work</h2>
+      <div class="work-grid">
+        <!-- WORK 1 -->
+        <article class="work reveal">
+          <div class="work-header" role="img" aria-label="T‑Mobile Santa Calling">
+            <span class="badge">Shorty Winner</span>
+            T‑Mobile — Santa Calling
+          </div>
+          <div class="work-body">
+            <div class="work-title">
+              <h3>T‑Mobile Holiday Program</h3>
+              <div class="tags">
+                <span class="tag">Campaign</span><span class="tag">Community</span><span class="tag">Safety</span>
+              </div>
+            </div>
+            <p>Social strategy for a national program connecting families to virtual Santas during lockdowns. 2M+ organic impressions and a <em>Shorty Award</em>.</p>
+            <a href="#" aria-label="Open case study: T‑Mobile Holiday Program">View case study →</a>
+          </div>
+        </article>
+        <!-- WORK 2 -->
+        <article class="work reveal">
+          <div class="work-header" role="img" aria-label="Salesforce Cyber Week Strategy">
+            <span class="badge">B2C Commerce</span>
+            Salesforce — Cyber Week
+          </div>
+          <div class="work-body">
+            <div class="work-title">
+              <h3>Cyber Week Social System</h3>
+              <div class="tags"><span class="tag">Playbook</span><span class="tag">Analytics</span><span class="tag">Video</span></div>
+            </div>
+            <p>Built a content system for 70+ posts across the week. Result: 30% higher engagement rate vs. prior year.</p>
+            <a href="#" aria-label="Open case study: Cyber Week Social System">View case study →</a>
+          </div>
+        </article>
+        <!-- WORK 3 -->
+        <article class="work reveal">
+          <div class="work-header" role="img" aria-label="Starbucks Doubleshot Launch">
+            <span class="badge">Launch</span>
+            Starbucks — Doubleshot
+          </div>
+          <div class="work-body">
+            <div class="work-title">
+              <h3>Doubleshot Channel Launch</h3>
+              <div class="tags"><span class="tag">Creators</span><span class="tag">YouTube</span><span class="tag">Growth</span></div>
+            </div>
+            <p>Grew net‑new channels to 300K+ in year one with a creator series (Unbox Therapy, MatPat, Aaron Kyro). 1.2M views, 7× follower growth.</p>
+            <a href="#" aria-label="Open case study: Doubleshot Channel Launch">View case study →</a>
+          </div>
+        </article>
+        <!-- WORK 4 -->
+        <article class="work reveal">
+          <div class="work-header" role="img" aria-label="OnePlus partnership">
+            <span class="badge">Collab</span>
+            T‑Mobile × OnePlus
+          </div>
+          <div class="work-body">
+            <div class="work-title">
+              <h3>“Go Farther” Hunt</h3>
+              <div class="tags"><span class="tag">Activation</span><span class="tag">UGC</span><span class="tag">+125% ER</span></div>
+            </div>
+            <p>Digital scavenger hunt across channels, beating engagement benchmarks by 125% and driving product discovery.</p>
+            <a href="#" aria-label="Open case study: Go Farther Hunt">View case study →</a>
+          </div>
+        </article>
+      </div>
+    </section>
 
-.tweet-preview {
-  font-size: 1.1rem;
-  margin-bottom: 6px;
-}
+    <section id="results" class="container">
+      <h2 class="section-title">Results that matter</h2>
+      <div class="stats reveal" aria-live="polite">
+        <div class="stat"><div class="num" data-target="2000000">0</div><div class="muted">Organic impressions</div></div>
+        <div class="stat"><div class="num" data-target="359">0</div><div class="muted">% engagement growth</div></div>
+        <div class="stat"><div class="num" data-target="50">0</div><div class="muted">Crisis programs led</div></div>
+        <div class="stat"><div class="num" data-target="8">0</div><div class="muted">Years experience</div></div>
+      </div>
+    </section>
 
-.tweet-details {
-  display: none;
-  font-size: 0.95rem;
-  color: #333;
-  margin-top: 8px;
-}
+    <section id="contact" class="container" aria-labelledby="contact-heading">
+      <h2 id="contact-heading" class="section-title">Let’s work together</h2>
+      <div class="grid cols-3 reveal" style="grid-template-columns:1.2fr 1fr">
+        <div class="card">
+          <p class="muted">Have a project, role, or event? I’m Seattle‑based and work globally.</p>
+          <ul class="muted" style="padding-left:1.1rem">
+            <li>daniel.lawrence.kirk@gmail.com</li>
+            <li><a href="https://www.linkedin.com/in/danielrkirk" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://github.com/danielrkirk" target="_blank" rel="noopener">GitHub</a></li>
+          </ul>
+        </div>
+        <form class="card" id="contactForm" novalidate>
+          <label>Name<input name="name" required autocomplete="name" /></label>
+          <label>Email<input name="email" type="email" required autocomplete="email" /></label>
+          <label>Message<textarea name="message" rows="4" required></textarea></label>
+          <button class="btn" type="submit">Send</button>
+          <p id="formStatus" class="muted" aria-live="polite" style="margin:0"></p>
+        </form>
+      </div>
+    </section>
+  </main>
 
-.tweet-details img {
-  margin-top: 12px;
-  width: 100%;
-  border-radius: 12px;
-}
+  <script type="application/ld+json">{
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Daniel Kirk",
+    "jobTitle":"Social Media & Digital Strategist",
+    "url":"https://your-domain.example/",
+    "email":"mailto:daniel.lawrence.kirk@gmail.com",
+    "sameAs":["https://www.linkedin.com/in/danielrkirk","https://github.com/danielrkirk"]
+  }</script>
 
-.tweet.active .tweet-details {
-  display: block;
-}
-</style>
+  <script>
+    // Mobile drawer
+    const btn=document.querySelector('.hamburger');
+    const drawer=document.getElementById('drawer');
+    btn?.addEventListener('click',()=>{
+      const open=drawer.classList.toggle('open');
+      drawer.hidden=!open; btn.setAttribute('aria-expanded', String(open));
+    });
 
-<script>
-function toggleDetails(el) {
-  el.classList.toggle('active');
-}
-</script>
+    // Smooth scroll for same-page anchors
+    document.addEventListener('click', (e)=>{
+      const a=e.target.closest('a[href^="#"]');
+      if(!a) return; const id=a.getAttribute('href');
+      const el=id && document.querySelector(id);
+      if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth'}); drawer?.classList.remove('open'); drawer.hidden=true; btn?.setAttribute('aria-expanded','false'); }
+    });
+
+    // Reveal on scroll
+    const io=new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add('show'); io.unobserve(entry.target);} });
+    },{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // Stats counter (robust + respects reduced motion)
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const counters=document.querySelectorAll('.num');
+    const animateNum = (el)=>{
+      const target=Number(el.dataset.target||0); if(prefersReduced){ el.textContent=new Intl.NumberFormat().format(target); return; }
+      let current=0; const duration=900; const start=performance.now();
+      function tick(now){
+        const p=Math.min(1,(now-start)/duration); current=Math.floor(target*p);
+        el.textContent=new Intl.NumberFormat().format(current);
+        if(p<1) requestAnimationFrame(tick); else el.textContent=new Intl.NumberFormat().format(target);
+      }
+      requestAnimationFrame(tick);
+    };
+    const so=new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{ if(entry.isIntersecting){ animateNum(entry.target.querySelector('.num')); so.unobserve(entry.target);} });
+    },{threshold:.4});
+    document.querySelectorAll('.stat').forEach(s=>so.observe(s));
+
+    // Contact form (client-only fallback)
+    document.getElementById('contactForm')?.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const f=e.currentTarget; const data=new FormData(f);
+      const name=data.get('name'); const email=data.get('email'); const message=data.get('message');
+      const ok = name && email && message;
+      const status=document.getElementById('formStatus');
+      if(!ok){ status.textContent='Please fill out all fields.'; return; }
+      // Mailto fallback (replace with your preferred handler or Netlify form)
+      const mailto=`mailto:daniel.lawrence.kirk@gmail.com?subject=Portfolio%20Inquiry%20from%20${encodeURIComponent(name)}&body=${encodeURIComponent(message + "\n\n— " + name + " (" + email + ")")}`;
+      window.location.href=mailto; status.textContent='Opening your email client…';
+      f.reset();
+    });
+  </script>
+</body>
+</html>
