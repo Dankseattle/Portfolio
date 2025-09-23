@@ -1,827 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daniel Kirk - Social Media & Digital Strategist</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Animated background particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 6s infinite ease-in-out;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.5; }
-            50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #667eea;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: #667eea;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background: #667eea;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-        }
-
-        .hero-content {
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #fff, #f0f0f0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero .subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
-
-        /* Sections */
-        .section {
-            padding: 5rem 0;
-            background: white;
-            margin: 2rem 0;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #333;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 2px;
-        }
-
-        /* About Section */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .profile-image {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-            font-weight: bold;
-            margin: 0 auto;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(102, 126, 234, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0); }
-        }
-
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-card {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            color: white;
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-10px) scale(1.05);
-        }
-
-        .skill-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Portfolio Grid */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .portfolio-item {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .portfolio-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-        }
-
-        .portfolio-image {
-            height: 200px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-
-        .portfolio-content {
-            padding: 1.5rem;
-        }
-
-        .portfolio-title {
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        .portfolio-description {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        /* Stats Section */
-        .stats {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-        }
-
-        .stat-item {
-            padding: 2rem;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        /* Contact Section */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .contact-info {
-            font-size: 1.1rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            margin-right: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-group label {
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            padding: 1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .submit-btn {
-            padding: 1rem 2rem;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .animate-on-scroll.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .about-grid,
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .skills-grid,
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Social Links */
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .social-link {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: transform 0.3s ease;
-        }
-
-        .social-link:hover {
-            transform: scale(1.1) rotate(5deg);
-        }
-    </style>
-</head>
-<body>
-    <!-- Animated background -->
-    <div class="particles" id="particles"></div>
-
-    <!-- Header -->
-    <header>
-        <nav class="container">
-            <div class="logo">Daniel Kirk</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Social Media & Digital Strategist</h1>
-            <p class="subtitle">Award-winning strategist with 10+ years experience driving engagement and growth for Fortune 500 brands</p>
-            <a href="#portfolio" class="cta-button">View My Work</a>
+<!-- Twitter-Style Project Feed -->
+<section id="tweet-feed" class="section">
+  <div class="container">
+    <h2 class="section-title">Project Feed</h2>
+
+    <div class="tweet-feed">
+      <div class="tweet" onclick="toggleDetails(this)">
+        <div class="tweet-header">
+          <span class="tweet-user">Dan Kirk</span> · <span class="tweet-time">T-Mobile</span>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="section">
-        <div class="container">
-            <h2 class="section-title animate-on-scroll">About Me</h2>
-            <div class="about-grid animate-on-scroll">
-                <div class="profile-image">DK</div>
-                <div class="about-text">
-                    <p><strong>Hi, I'm Dan.</strong></p>
-                    
-                    <p><strong>Award-Winning Social Media Leader</strong><br>
-                    As a social media strategist, I've launched lattes, leveled up enterprise tech, and made robot cars feel relatable. After a decade of leading social campaigns at brands like Starbucks, T-Mobile, Salesforce, and Cruise, I know how to create content that actually builds brand love.</p>
-                </div>
-            </div>
+        <p class="tweet-preview">Launched Santa Calling with 2M+ organic impressions 🎅📱</p>
+        <div class="tweet-details">
+          <p>Created a digital Santa hotline to connect kids with Santa during lockdown. Shorty Award winner.</p>
+          <img src="https://user-images.githubusercontent.com/58638466/265236042-e40fcdb3-9a92-4971-ae77-7dc7e09a94f2.png" alt="T-Mobile Santa Calling" />
         </div>
-    </section>
+      </div>
 
-    <!-- Skills Section -->
-    <section id="skills" class="section">
-        <div class="container">
-            <h2 class="section-title animate-on-scroll">My Expertise</h2>
-            <div class="skills-grid animate-on-scroll">
-                <div class="skill-card">
-                    <div class="skill-icon">📱</div>
-                    <h3>Social Strategy & Execution</h3>
-                    <p>Developing comprehensive social strategies that align with brand goals and drive measurable growth</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">📊</div>
-                    <h3>Analytics & Crisis Management</h3>
-                    <p>Leveraging data insights and managing crisis communications for Fortune 500 brands</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">🎨</div>
-                    <h3>Creative Strategy & Content</h3>
-                    <p>Creating award-winning campaigns through copywriting, graphic design, and video editing</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">🤝</div>
-                    <h3>Community & Influencer Management</h3>
-                    <p>Building engaged communities and managing influencer partnerships that drive authentic connections</p>
-                </div>
-            </div>
+      <div class="tweet" onclick="toggleDetails(this)">
+        <div class="tweet-header">
+          <span class="tweet-user">Dan Kirk</span> · <span class="tweet-time">Starbucks</span>
         </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats section">
-        <div class="container">
-            <h2 class="section-title">Results That Matter</h2>
-            <div class="stats-grid animate-on-scroll">
-                <div class="stat-item">
-                    <div class="stat-number">2M+</div>
-                    <div class="stat-label">Organic Impressions Generated</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">359%</div>
-                    <div class="stat-label">Engagement Growth Achieved</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label">Crisis Communications Managed</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">8+</div>
-                    <div class="stat-label">Years of Experience</div>
-                </div>
-            </div>
+        <p class="tweet-preview">Launched Doubleshot with top YouTubers ☕️🎥</p>
+        <div class="tweet-details">
+          <p>Built creator-led content series with MatPat, Aaron Kyro, and Unbox Therapy. Generated 1.2M views and 7X growth.</p>
+          <img src="https://user-images.githubusercontent.com/58638466/265236076-ec1b4c7f-3184-41c3-949e-5b0c4576a748.jpg" alt="Starbucks Doubleshot YouTube" />
         </div>
-    </section>
+      </div>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="section">
-        <div class="container">
-            <h2 class="section-title animate-on-scroll">Featured Work</h2>
-            <div class="portfolio-grid animate-on-scroll">
-                <div class="portfolio-item">
-                    <div class="portfolio-image">T-Mobile Santa Calling</div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">T-Mobile Holiday Campaign</h3>
-                        <p class="portfolio-description">Lead social strategy for 'Santa Calling' campaign connecting kids with virtual Santas during COVID. Earned 2M+ organic impressions and won 2021 Shorty Award.</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-image">Salesforce Commerce Cloud</div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">Salesforce Cyber Week Strategy</h3>
-                        <p class="portfolio-description">Developed comprehensive social strategy and created 70+ posts for Cyber Week, delivering 30% higher engagement rate than previous year.</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-image">Starbucks Doubleshot</div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">Starbucks Doubleshot Launch</h3>
-                        <p class="portfolio-description">Grew new social channels to 300K+ followers in first year through strategic content creation and YouTube series featuring top creators.</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-image">YouTube Creator Series</div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">Doubleshot YouTube Series</h3>
-                        <p class="portfolio-description">Created YouTube series featuring Unbox Therapy, MatPat, and Aaron Kyro. Generated 1.2M views and 7X follower growth.</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-image">OnePlus Partnership</div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">T-Mobile 'Go Farther' Campaign</h3>
-                        <p class="portfolio-description">Lead social strategy for OnePlus partnership creating digital scavenger hunt that exceeded engagement benchmarks by 125%.</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-image">VidCon Activation</div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">Starbucks VidCon Experience</h3>
-                        <p class="portfolio-description">Lead strategy for experiential activation at VidCon, transforming a Starbucks location into an 'Instagrammable' destination. Won AdWeek 2021 Experiential Campaign of the Year.</p>
-                    </div>
-                </div>
-            </div>
+      <div class="tweet" onclick="toggleDetails(this)">
+        <div class="tweet-header">
+          <span class="tweet-user">Dan Kirk</span> · <span class="tweet-time">Salesforce</span>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-        <div class="container">
-            <h2 class="section-title animate-on-scroll">Let's Work Together</h2>
-            <div class="contact-grid animate-on-scroll">
-                <div class="contact-info">
-                    <h3>Get in Touch</h3>
-                    <p>Ready to take your social media presence to the next level? I'd love to discuss how we can work together to achieve your goals.</p>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">📧</div>
-                        <div>
-                            <strong>Email</strong><br>
-                            your.email@example.com
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">📱</div>
-                        <div>
-                            <strong>Phone</strong><br>
-                            +1 (555) 123-4567
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div>
-                            <strong>Location</strong><br>
-                            Your City, State
-                        </div>
-                    </div>
-
-                    <div class="social-links">
-                        <a href="#" class="social-link">𝕏</a>
-                        <a href="#" class="social-link">📷</a>
-                        <a href="#" class="social-link">💼</a>
-                        <a href="#" class="social-link">🎵</a>
-                    </div>
-                </div>
-                
-                <div class="contact-form">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </div>
-            </div>
+        <p class="tweet-preview">Orchestrated 70+ Cyber Week posts with 30% higher engagement 📈</p>
+        <div class="tweet-details">
+          <p>Drove record performance through smart creative, AI integrations, and channel-specific planning.</p>
+          <img src="https://user-images.githubusercontent.com/58638466/265236112-81d1790b-c3c3-40ff-a36c-fbd50ae011b0.png" alt="Salesforce Cyber Week posts" />
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        // Create animated particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
+<style>
+.tweet-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 600px;
+  margin: 0 auto;
+}
 
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
+.tweet {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+.tweet-header {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 4px;
+}
 
-        // Animate elements on scroll
-        function animateOnScroll() {
-            const elements = document.querySelectorAll('.animate-on-scroll');
-            
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('animated');
-                }
-            });
-        }
+.tweet-user {
+  font-weight: 600;
+}
 
-        // Counter animation for stats
-        function animateCounters() {
-            const counters = document.querySelectorAll('.stat-number');
-            const speed = 200; // The lower the slower
+.tweet-preview {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
 
-            counters.forEach(counter => {
-                const animate = () => {
-                    const value = +counter.getAttribute('data-target') || +counter.innerText.replace(/[^0-9.]/g, '');
-                    const data = +counter.innerText.replace(/[^0-9.]/g, '') || 0;
+.tweet-details {
+  display: none;
+  font-size: 0.95rem;
+  color: #333;
+  margin-top: 8px;
+}
 
-                    const time = value / speed;
+.tweet-details img {
+  margin-top: 12px;
+  width: 100%;
+  border-radius: 12px;
+}
 
-                    if (data < value) {
-                        counter.innerText = Math.ceil(data + time) + counter.getAttribute('data-suffix') || '';
-                        setTimeout(animate, 1);
-                    } else {
-                        counter.innerText = value + (counter.getAttribute('data-suffix') || '');
-                    }
-                };
+.tweet.active .tweet-details {
+  display: block;
+}
+</style>
 
-                // Set data attributes for animation
-                const text = counter.innerText;
-                const number = text.replace(/[^0-9.]/g, '');
-                const suffix = text.replace(/[0-9.]/g, '');
-                
-                counter.setAttribute('data-target', number);
-                counter.setAttribute('data-suffix', suffix);
-                counter.innerText = '0' + suffix;
-
-                animate();
-            });
-        }
-
-        // Form handling
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const subject = formData.get('subject');
-            const message = formData.get('message');
-            
-            // Here you would typically send the data to your server
-            // For now, we'll just show a success message
-            alert('Thank you for your message! I\'ll get back to you soon.');
-            
-            // Reset form
-            this.reset();
-        });
-
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.boxShadow = 'none';
-            }
-            
-            animateOnScroll();
-        });
-
-        // Initialize everything when page loads
-        window.addEventListener('load', function() {
-            createParticles();
-            animateOnScroll();
-            
-            // Trigger counter animation when stats section is visible
-            const statsSection = document.querySelector('.stats');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateCounters();
-                        observer.unobserve(entry.target);
-                    }
-                });
-            });
-            
-            observer.observe(statsSection);
-        });
-
-        // Portfolio item interactions
-        document.querySelectorAll('.portfolio-item').forEach(item => {
-            item.addEventListener('click', function() {
-                const title = this.querySelector('.portfolio-title').textContent;
-                const description = this.querySelector('.portfolio-description').textContent;
-                alert(`${title}\n\n${description}\n\nClick to view full case study (would redirect to detailed page)`);
-            });
-        });
-    </script>
-</body>
-</html>
+<script>
+function toggleDetails(el) {
+  el.classList.toggle('active');
+}
+</script>
