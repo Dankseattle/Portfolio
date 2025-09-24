@@ -28,7 +28,7 @@ p { color: var(--muted); margin: 0 0 1rem 0; }
 
 /* Hero with more vertical space */
 .hero {
-  padding: 160px 0 120px; /* more breathing room top & bottom */
+  padding: 160px 0 120px;
 }
 .hero-text { max-width: 720px; }
 
@@ -40,17 +40,17 @@ p { color: var(--muted); margin: 0 0 1rem 0; }
   border-radius:999px;
   font-size:.9rem;
   font-weight:600;
-  margin-bottom: 40px; /* extra space under pill */
+  margin-bottom: 40px;
 }
 
 .hero-text h1 {
-  margin-bottom: 28px; /* extra under headline */
+  margin-bottom: 28px;
 }
 
 .lead { font-size: 1.1rem; }
 
 .cta {
-  margin-top: 40px; /* extra above button */
+  margin-top: 40px;
 }
 
 .btn {
@@ -86,17 +86,19 @@ p { color: var(--muted); margin: 0 0 1rem 0; }
 
 /* Brands marquee — logos with no container */
 .bar-title {
-  background: linear-gradient(90deg, #A9C7F8, #69D0B0);
+  background: linear-gradient(90deg, var(--brand) 0, #8FA7FF 100%); /* match pill gradient */
   color: #fff;
-  font-weight: 800;
+  font-weight: 700;
   text-align: center;
+  font-size: 1.05rem;
   padding: 14px 18px;
   border-radius: 16px;
   margin-bottom: 40px;
+  text-transform: none; /* sentence case */
 }
 
 .marquee {
-  --gap: 60px; /* space between logos */
+  --gap: 60px;
   --speed: 32s;
   overflow: hidden;
   position: relative;
@@ -126,7 +128,7 @@ p { color: var(--muted); margin: 0 0 1rem 0; }
 }
 
 .brand-card img {
-  height: 100px; /* consistent logo size */
+  height: 120px; /* bigger logos */
   width: auto;
   object-fit: contain;
   display: block;
