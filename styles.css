@@ -27,9 +27,7 @@ h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 800; }
 p { color: var(--muted); margin: 0 0 1rem 0; }
 
 /* Hero with more vertical space */
-.hero {
-  padding: 160px 0 120px;
-}
+.hero { padding: 160px 0 120px; }
 .hero-text { max-width: 720px; }
 
 .badge {
@@ -43,15 +41,9 @@ p { color: var(--muted); margin: 0 0 1rem 0; }
   margin-bottom: 40px;
 }
 
-.hero-text h1 {
-  margin-bottom: 28px;
-}
-
+.hero-text h1 { margin-bottom: 28px; }
 .lead { font-size: 1.1rem; }
-
-.cta {
-  margin-top: 40px;
-}
+.cta { margin-top: 40px; }
 
 .btn {
   display:inline-block;
@@ -84,9 +76,17 @@ p { color: var(--muted); margin: 0 0 1rem 0; }
 .nav a { text-decoration:none; color:var(--ink); }
 .mode { border:1px solid var(--line); border-radius:50%; padding:6px 10px; background: var(--surface); }
 
-/* Brands marquee — logos with no container */
+/* Section divider */
+.section-divider {
+  border-top: 1px solid var(--line);
+  margin: 80px auto 60px;
+  width: 60%;
+  opacity: 0.5;
+}
+
+/* Brands marquee */
 .bar-title {
-  background: linear-gradient(90deg, var(--brand) 0, #8FA7FF 100%); /* match pill gradient */
+  background: linear-gradient(90deg, var(--brand) 0, #8FA7FF 100%);
   color: #fff;
   font-weight: 700;
   text-align: center;
@@ -128,7 +128,7 @@ p { color: var(--muted); margin: 0 0 1rem 0; }
 }
 
 .brand-card img {
-  height: 120px; /* bigger logos */
+  height: 120px;
   width: auto;
   object-fit: contain;
   display: block;
