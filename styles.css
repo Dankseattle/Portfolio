@@ -27,7 +27,7 @@ h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 800; }
 p { color: var(--muted); margin: 0 0 1rem 0; }
 
 /* Hero with more vertical space */
-.hero { padding: 160px 0 120px; }
+.hero { padding: 140px 0 80px; }
 .hero-text { max-width: 720px; }
 
 .badge {
@@ -79,7 +79,7 @@ p { color: var(--muted); margin: 0 0 1rem 0; }
 /* Section divider */
 .section-divider {
   border-top: 1px solid var(--line);
-  margin: 80px auto 60px;
+  margin: 40px auto 28px;
   width: 60%;
   opacity: 0.5;
 }
