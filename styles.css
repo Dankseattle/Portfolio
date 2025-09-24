@@ -26,8 +26,10 @@ h1 { font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 800; }
 h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 800; }
 p { color: var(--muted); margin: 0 0 1rem 0; }
 
-/* Hero */
-.hero { padding: 100px 0 80px; }
+/* Hero with more vertical space */
+.hero {
+  padding: 160px 0 120px; /* more breathing room top & bottom */
+}
 .hero-text { max-width: 720px; }
 
 .badge {
@@ -38,17 +40,17 @@ p { color: var(--muted); margin: 0 0 1rem 0; }
   border-radius:999px;
   font-size:.9rem;
   font-weight:600;
-  margin-bottom: 32px; /* more space under pill */
+  margin-bottom: 40px; /* extra space under pill */
 }
 
 .hero-text h1 {
-  margin-bottom: 24px; /* space under headline */
+  margin-bottom: 28px; /* extra under headline */
 }
 
 .lead { font-size: 1.1rem; }
 
 .cta {
-  margin-top: 32px; /* more breathing room above button */
+  margin-top: 40px; /* extra above button */
 }
 
 .btn {
@@ -82,47 +84,52 @@ p { color: var(--muted); margin: 0 0 1rem 0; }
 .nav a { text-decoration:none; color:var(--ink); }
 .mode { border:1px solid var(--line); border-radius:50%; padding:6px 10px; background: var(--surface); }
 
-/* Brands marquee */
+/* Brands marquee — logos with no container */
 .bar-title {
   background: linear-gradient(90deg, #A9C7F8, #69D0B0);
-  color: #fff; font-weight: 800;
+  color: #fff;
+  font-weight: 800;
   text-align: center;
-  padding: 12px 16px;
+  padding: 14px 18px;
   border-radius: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 40px;
 }
+
 .marquee {
-  --gap: 36px;
+  --gap: 60px; /* space between logos */
   --speed: 32s;
-  overflow: hidden; position: relative; width: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
 }
+
 .track {
-  display: inline-flex; gap: var(--gap); align-items: center;
+  display: inline-flex;
+  gap: var(--gap);
+  align-items: center;
   animation: scroll var(--speed) linear infinite;
 }
 .marquee:hover .track { animation-play-state: paused; }
+
 @keyframes scroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+
 .brand-card {
   flex: 0 0 auto;
-  height: 100px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
   border: none;
   background: transparent;
   box-shadow: none;
+  padding: 0;
+  margin: 0;
 }
+
 .brand-card img {
-  max-height: 80px;
+  height: 100px; /* consistent logo size */
   width: auto;
   object-fit: contain;
-}
-@media (prefers-reduced-motion: reduce) {
-  .track { animation: none; flex-wrap: wrap; }
-  .brand-card { flex: 1 1 45%; }
+  display: block;
 }
 
 /* About */
