@@ -137,19 +137,24 @@
     .brand-card {
       flex: 0 0 auto;
       border: none;
-      background: transparent;
+      background: var(--surface);
       box-shadow: none;
       padding: 20px;
       margin: 0;
-      background: var(--surface);
       border-radius: var(--radius);
       min-width: 140px;
       height: 80px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
-      color: var(--muted);
+      border: 1px solid var(--line);
+    }
+
+    .brand-card img {
+      max-height: 40px;
+      max-width: 100px;
+      object-fit: contain;
+      display: block;
     }
 
     /* Select Works */
@@ -163,14 +168,46 @@
     .work-card {
       background: var(--surface);
       border-radius: var(--radius);
-      padding: 24px;
+      padding: 0;
       transition: all 0.3s ease;
       border: 1px solid var(--line);
+      overflow: hidden;
     }
 
     .work-card:hover {
       transform: translateY(-4px);
       box-shadow: var(--shadow);
+    }
+
+    .work-media {
+      width: 100%;
+      height: 200px;
+      background: var(--surface-2);
+      border-radius: var(--radius) var(--radius) 0 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .work-media img,
+    .work-media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .work-media .placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-align: center;
+      background: linear-gradient(135deg, var(--surface-2) 0%, var(--surface) 100%);
+    }
+
+    .work-content {
+      padding: 24px;
     }
 
     .work-header {
@@ -227,10 +264,18 @@
       letter-spacing: 0.5px;
     }
 
+    .work-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+    }
+
     .work-tags {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
+      flex: 1;
     }
 
     .tag {
@@ -239,6 +284,19 @@
       border-radius: 6px;
       font-size: 0.8rem;
       color: var(--muted);
+    }
+
+    .work-link {
+      color: var(--brand);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: color 0.2s ease;
+    }
+
+    .work-link:hover {
+      color: var(--brand-600);
     }
 
     /* Contact */
@@ -341,24 +399,18 @@
 
         <div class="marquee" aria-label="Brands I've worked with">
           <div class="track">
-            <figure class="brand-card">Starbucks</figure>
-            <figure class="brand-card">T-Mobile</figure>
-            <figure class="brand-card">Salesforce</figure>
-            <figure class="brand-card">Cruise</figure>
-            <figure class="brand-card">Samsung</figure>
-            <figure class="brand-card">Apple</figure>
-            <figure class="brand-card">Google</figure>
-            <figure class="brand-card">OnePlus</figure>
+            <figure class="brand-card"><img src="logos/starbucks.png" alt="Starbucks" loading="lazy"></figure>
+            <figure class="brand-card"><img src="logos/tmobile.png" alt="T-Mobile" loading="lazy"></figure>
+            <figure class="brand-card"><img src="logos/salesforce.png" alt="Salesforce" loading="lazy"></figure>
+            <figure class="brand-card"><img src="logos/cruise.png" alt="Cruise" loading="lazy"></figure>
+            <figure class="brand-card"><img src="logos/samsung.png" alt="Samsung" loading="lazy"></figure>
 
             <!-- Duplicate row for seamless loop -->
-            <figure class="brand-card" aria-hidden="true">Starbucks</figure>
-            <figure class="brand-card" aria-hidden="true">T-Mobile</figure>
-            <figure class="brand-card" aria-hidden="true">Salesforce</figure>
-            <figure class="brand-card" aria-hidden="true">Cruise</figure>
-            <figure class="brand-card" aria-hidden="true">Samsung</figure>
-            <figure class="brand-card" aria-hidden="true">Apple</figure>
-            <figure class="brand-card" aria-hidden="true">Google</figure>
-            <figure class="brand-card" aria-hidden="true">OnePlus</figure>
+            <figure class="brand-card" aria-hidden="true"><img src="logos/starbucks.png" alt="" loading="lazy"></figure>
+            <figure class="brand-card" aria-hidden="true"><img src="logos/tmobile.png" alt="" loading="lazy"></figure>
+            <figure class="brand-card" aria-hidden="true"><img src="logos/salesforce.png" alt="" loading="lazy"></figure>
+            <figure class="brand-card" aria-hidden="true"><img src="logos/cruise.png" alt="" loading="lazy"></figure>
+            <figure class="brand-card" aria-hidden="true"><img src="logos/samsung.png" alt="" loading="lazy"></figure>
           </div>
         </div>
       </div>
@@ -374,115 +426,151 @@
         <p>A few campaigns that made an impact</p>
         
         <div class="works-grid">
-          <!-- Santa Calling Campaign -->
+          <!-- Salesforce Commerce Cloud - 2024 -->
           <div class="work-card">
-            <div class="work-header">
-              <span class="work-brand">T-Mobile</span>
-              <span class="work-year">2020</span>
+            <div class="work-media">
+              <div class="placeholder">Commerce Cloud Campaign Creative</div>
+              <!-- Replace with: <img src="images/salesforce-campaign.jpg" alt="Salesforce Commerce Cloud Campaign"> -->
             </div>
-            <h3 class="work-title">Santa Calling Holiday Campaign</h3>
-            <p class="work-description">
-              Created a heartwarming social campaign connecting kids with virtual Santas during COVID lockdowns. 
-              The campaign brought joy to families while showcasing T-Mobile's connectivity message.
-            </p>
-            <div class="work-metrics">
-              <div class="metric">
-                <span class="metric-value">2M+</span>
-                <span class="metric-label">Organic Impressions</span>
+            <div class="work-content">
+              <div class="work-header">
+                <span class="work-brand">Salesforce</span>
+                <span class="work-year">2024</span>
               </div>
-              <div class="metric">
-                <span class="metric-value">🏆</span>
-                <span class="metric-label">Shorty Award</span>
+              <h3 class="work-title">Commerce Cloud Growth Strategy</h3>
+              <p class="work-description">
+                Developed comprehensive social strategy for Commerce Cloud, including Cyber Week campaigns. 
+                Created content systems that scaled across multiple channels and product lines.
+              </p>
+              <div class="work-metrics">
+                <div class="metric">
+                  <span class="metric-value">197%</span>
+                  <span class="metric-label">YoY Engagement Growth</span>
+                </div>
+                <div class="metric">
+                  <span class="metric-value">70+</span>
+                  <span class="metric-label">Campaign Assets</span>
+                </div>
               </div>
-            </div>
-            <div class="work-tags">
-              <span class="tag">Social Strategy</span>
-              <span class="tag">Holiday Campaign</span>
-              <span class="tag">Community</span>
+              <div class="work-footer">
+                <div class="work-tags">
+                  <span class="tag">B2B Social</span>
+                  <span class="tag">Content Strategy</span>
+                  <span class="tag">Enterprise</span>
+                </div>
+                <a href="#" class="work-link">View Case Study →</a>
+              </div>
             </div>
           </div>
 
-          <!-- Salesforce Commerce Cloud -->
+          <!-- T-Mobile Santa Calling - 2020 -->
           <div class="work-card">
-            <div class="work-header">
-              <span class="work-brand">Salesforce</span>
-              <span class="work-year">2024</span>
+            <div class="work-media">
+              <div class="placeholder">Santa Calling Campaign Video</div>
+              <!-- Replace with: <video src="videos/santa-calling.mp4" poster="images/santa-calling-thumb.jpg" controls></video> -->
             </div>
-            <h3 class="work-title">Commerce Cloud Growth Strategy</h3>
-            <p class="work-description">
-              Developed comprehensive social strategy for Commerce Cloud, including Cyber Week campaigns. 
-              Created content systems that scaled across multiple channels and product lines.
-            </p>
-            <div class="work-metrics">
-              <div class="metric">
-                <span class="metric-value">197%</span>
-                <span class="metric-label">YoY Engagement Growth</span>
+            <div class="work-content">
+              <div class="work-header">
+                <span class="work-brand">T-Mobile</span>
+                <span class="work-year">2020</span>
               </div>
-              <div class="metric">
-                <span class="metric-value">70+</span>
-                <span class="metric-label">Campaign Assets</span>
+              <h3 class="work-title">Santa Calling Holiday Campaign</h3>
+              <p class="work-description">
+                Created a heartwarming social campaign connecting kids with virtual Santas during COVID lockdowns. 
+                The campaign brought joy to families while showcasing T-Mobile's connectivity message.
+              </p>
+              <div class="work-metrics">
+                <div class="metric">
+                  <span class="metric-value">2M+</span>
+                  <span class="metric-label">Organic Impressions</span>
+                </div>
+                <div class="metric">
+                  <span class="metric-value">🏆</span>
+                  <span class="metric-label">Shorty Award</span>
+                </div>
               </div>
-            </div>
-            <div class="work-tags">
-              <span class="tag">B2B Social</span>
-              <span class="tag">Content Strategy</span>
-              <span class="tag">Enterprise</span>
+              <div class="work-footer">
+                <div class="work-tags">
+                  <span class="tag">Social Strategy</span>
+                  <span class="tag">Holiday Campaign</span>
+                  <span class="tag">Community</span>
+                </div>
+                <a href="https://shortyawards.com/13th/santa-calling" class="work-link" target="_blank">View Award →</a>
+              </div>
             </div>
           </div>
 
-          <!-- Starbucks Doubleshot -->
+          <!-- VidCon Experience - 2018 -->
           <div class="work-card">
-            <div class="work-header">
-              <span class="work-brand">Starbucks</span>
-              <span class="work-year">2017</span>
+            <div class="work-media">
+              <div class="placeholder">VidCon Activation Photos</div>
+              <!-- Replace with: <img src="images/vidcon-activation.jpg" alt="VidCon Starbucks Experience"> -->
             </div>
-            <h3 class="work-title">Doubleshot YouTube Series</h3>
-            <p class="work-description">
-              Launched a YouTube creator series featuring Unbox Therapy, MatPat, and Aaron Kyro. 
-              Strategic partnerships that authentically integrated the product into creator content.
-            </p>
-            <div class="work-metrics">
-              <div class="metric">
-                <span class="metric-value">1.2M</span>
-                <span class="metric-label">Video Views</span>
+            <div class="work-content">
+              <div class="work-header">
+                <span class="work-brand">Starbucks</span>
+                <span class="work-year">2018</span>
               </div>
-              <div class="metric">
-                <span class="metric-value">7x</span>
-                <span class="metric-label">Follower Growth</span>
+              <h3 class="work-title">VidCon Experiential Activation</h3>
+              <p class="work-description">
+                Transformed a Starbucks location into an 'Instagrammable' destination for VidCon attendees. 
+                Seamlessly blended physical experience with social content creation.
+              </p>
+              <div class="work-metrics">
+                <div class="metric">
+                  <span class="metric-value">🏆</span>
+                  <span class="metric-label">AdWeek Campaign</span>
+                </div>
+                <div class="metric">
+                  <span class="metric-value">125%</span>
+                  <span class="metric-label">Engagement Lift</span>
+                </div>
               </div>
-            </div>
-            <div class="work-tags">
-              <span class="tag">Influencer Marketing</span>
-              <span class="tag">YouTube</span>
-              <span class="tag">Product Launch</span>
+              <div class="work-footer">
+                <div class="work-tags">
+                  <span class="tag">Experiential</span>
+                  <span class="tag">Event Marketing</span>
+                  <span class="tag">Instagram</span>
+                </div>
+                <a href="#" class="work-link">View Campaign →</a>
+              </div>
             </div>
           </div>
 
-          <!-- VidCon Experience -->
+          <!-- Starbucks Doubleshot - 2017 -->
           <div class="work-card">
-            <div class="work-header">
-              <span class="work-brand">Starbucks</span>
-              <span class="work-year">2018</span>
+            <div class="work-media">
+              <div class="placeholder">YouTube Creator Series</div>
+              <!-- Replace with: <img src="images/doubleshot-youtube.jpg" alt="Doubleshot YouTube Series"> -->
             </div>
-            <h3 class="work-title">VidCon Experiential Activation</h3>
-            <p class="work-description">
-              Transformed a Starbucks location into an 'Instagrammable' destination for VidCon attendees. 
-              Seamlessly blended physical experience with social content creation.
-            </p>
-            <div class="work-metrics">
-              <div class="metric">
-                <span class="metric-value">🏆</span>
-                <span class="metric-label">AdWeek Campaign</span>
+            <div class="work-content">
+              <div class="work-header">
+                <span class="work-brand">Starbucks</span>
+                <span class="work-year">2017</span>
               </div>
-              <div class="metric">
-                <span class="metric-value">125%</span>
-                <span class="metric-label">Engagement Lift</span>
+              <h3 class="work-title">Doubleshot YouTube Series</h3>
+              <p class="work-description">
+                Launched a YouTube creator series featuring Unbox Therapy, MatPat, and Aaron Kyro. 
+                Strategic partnerships that authentically integrated the product into creator content.
+              </p>
+              <div class="work-metrics">
+                <div class="metric">
+                  <span class="metric-value">1.2M</span>
+                  <span class="metric-label">Video Views</span>
+                </div>
+                <div class="metric">
+                  <span class="metric-value">7x</span>
+                  <span class="metric-label">Follower Growth</span>
+                </div>
               </div>
-            </div>
-            <div class="work-tags">
-              <span class="tag">Experiential</span>
-              <span class="tag">Event Marketing</span>
-              <span class="tag">Instagram</span>
+              <div class="work-footer">
+                <div class="work-tags">
+                  <span class="tag">Influencer Marketing</span>
+                  <span class="tag">YouTube</span>
+                  <span class="tag">Product Launch</span>
+                </div>
+                <a href="#" class="work-link">View Series →</a>
+              </div>
             </div>
           </div>
         </div>
