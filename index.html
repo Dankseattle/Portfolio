@@ -1,99 +1,242 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Dan — Social Media Leader</title>
-  <meta name="description" content="Award-winning social media leader. I create content that actually builds brand love." />
+  <meta name="description" content="Award-winning social media leader. Strategy, content systems, and campaigns that build brand love." />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=3" />
 </head>
 <body>
-  <header class="site-header">
-    <a class="logo" href="#">Dan</a>
-    <nav class="nav">
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
-      <a class="btn btn--small" href="#contact">Contact</a>
-    </nav>
+  <!-- Decorative background -->
+  <div class="backdrop" aria-hidden="true">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+    <span class="gridlines"></span>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header" id="top">
+    <div class="container">
+      <a class="logo" href="#top" aria-label="Home">Dan</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#work">Work</a>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#about">About</a>
+        <a href="#contact" class="btn btn--small">Contact</a>
+        <button class="mode" id="modeToggle" title="Toggle theme" aria-label="Toggle theme">◎</button>
+      </nav>
+    </div>
   </header>
 
   <main>
     <!-- Hero -->
-    <section class="hero">
+    <section class="hero reveal">
       <div class="container">
-        <h1>Hi, I'm Dan.</h1>
-        <p class="kicker">Award-Winning Social Media Leader</p>
-        <p class="lead">
-          As a social media strategist, I’ve launched lattes, leveled up enterprise tech,
-          and made robot cars feel relatable. After a decade of leading social campaigns
-          at brands like Starbucks, T-Mobile, Salesforce, and Cruise, I know how to
-          create content that actually builds brand love.
-        </p>
-        <a class="btn" href="#contact">Let’s connect</a>
+        <div class="hero-text">
+          <span class="badge">Social Strategy • Content Systems • Growth</span>
+          <h1>Hi, I’m Dan — I turn scrolls into fans and fans into growth.</h1>
+          <p class="lead">
+            A decade leading social for brands like <strong>Starbucks</strong>, <strong>T-Mobile</strong>, 
+            <strong>Salesforce</strong>, and <strong>Cruise</strong>. I build multi-platform programs that blend 
+            data, creative, and community.
+          </p>
+          <div class="cta">
+            <a class="btn" href="#work">See the work</a>
+            <a class="btn btn--ghost" href="#contact">Let’s talk</a>
+          </div>
+          <ul class="metrics">
+            <li><span data-count="45">0</span>% ↑ engagement</li>
+            <li><span data-count="3.1">0</span>M organic views</li>
+            <li><span data-count="220">0</span>% CTR vs. benchmark</li>
+          </ul>
+        </div>
+        <div class="hero-card">
+          <div class="stat">
+            <b>Content System</b>
+            <p>Modular storytelling across IG, TikTok, LI.</p>
+          </div>
+          <div class="stat">
+            <b>Creator Ops</b>
+            <p>Briefing, contracting, measurement built-in.</p>
+          </div>
+          <div class="stat">
+            <b>Brand Safety</b>
+            <p>Guardrails + governance without killing the fun.</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Work (placeholder grid you can fill later) -->
-    <section id="work" class="section">
+    <!-- Work -->
+    <section id="work" class="section reveal">
       <div class="container">
-        <h2>Selected Work</h2>
-        <div class="grid">
-          <article class="card">
-            <h3>Starbucks Seasonal Launch</h3>
-            <p>Concept → content system → creator collabs. +45% engagement QoQ.</p>
+        <div class="section-head">
+          <h2>Selected Work</h2>
+          <div class="filters" role="tablist" aria-label="Work filters">
+            <button class="chip is-active" data-filter="all" role="tab" aria-selected="true">All</button>
+            <button class="chip" data-filter="launch">Launches</button>
+            <button class="chip" data-filter="b2b">B2B</button>
+            <button class="chip" data-filter="video">Short-form</button>
+            <button class="chip" data-filter="community">Community</button>
+          </div>
+        </div>
+
+        <div class="grid cards">
+          <!-- Card 1 -->
+          <article class="card" data-tags="launch video" tabindex="0">
+            <header>
+              <h3>Starbucks Seasonal Launch</h3>
+              <span class="tag">Launch</span>
+            </header>
+            <p>Concept → content system → creator collabs. Result: <strong>+45% engagement</strong> QoQ.</p>
+            <ul class="pill-list">
+              <li>IG Reels</li><li>TikTok</li><li>Creators</li>
+            </ul>
+            <button class="link" data-modal="case1">View case study</button>
           </article>
-          <article class="card">
-            <h3>T-Mobile 5G Community Push</h3>
-            <p>Short-form video + live social coverage. 3.1M organic views.</p>
+
+          <!-- Card 2 -->
+          <article class="card" data-tags="community video" tabindex="0">
+            <header>
+              <h3>T-Mobile 5G Community Push</h3>
+              <span class="tag">Community</span>
+            </header>
+            <p>IRL → social loop. Live coverage + UGC framework. <strong>3.1M organic views</strong>.</p>
+            <ul class="pill-list">
+              <li>Live Social</li><li>UGC</li><li>Short-form</li>
+            </ul>
+            <button class="link" data-modal="case2">View case study</button>
           </article>
-          <article class="card">
-            <h3>Salesforce Thought Leadership</h3>
-            <p>LinkedIn carousel program. +220% CTR vs. benchmark.</p>
+
+          <!-- Card 3 -->
+          <article class="card" data-tags="b2b" tabindex="0">
+            <header>
+              <h3>Salesforce Thought Leadership</h3>
+              <span class="tag">B2B</span>
+            </header>
+            <p>LinkedIn carousels + POV engine. <strong>+220% CTR</strong> vs. benchmark.</p>
+            <ul class="pill-list">
+              <li>LinkedIn</li><li>Carousels</li><li>Demand</li>
+            </ul>
+            <button class="link" data-modal="case3">View case study</button>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Capabilities -->
+    <section id="capabilities" class="section reveal">
+      <div class="container">
+        <h2>Capabilities</h2>
+        <div class="grid caps">
+          <div class="cap">
+            <h4>Strategy & Roadmaps</h4>
+            <p>Audience, positioning, pillars, calendar, governance, and measurement—built for speed.</p>
+          </div>
+          <div class="cap">
+            <h4>Content Systems</h4>
+            <p>Modular assets across platforms: short-form, carousels, motion, and copy frameworks.</p>
+          </div>
+          <div class="cap">
+            <h4>Creator & Community</h4>
+            <p>Creator sourcing, briefs, approvals, and community playbooks that actually scale.</p>
+          </div>
+          <div class="cap">
+            <h4>Paid Amplification</h4>
+            <p>Always-on + bursts, objective-aligned, with learnings fed back to creative.</p>
+          </div>
+          <div class="cap">
+            <h4>Analytics</h4>
+            <p>KPI models, dashboards, and test-and-learn loops tied to business outcomes.</p>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- About -->
-    <section id="about" class="section">
-      <div class="container">
-        <h2>About</h2>
-        <p>
-          I build social strategies that translate into measurable growth.
-          Core skills: content strategy, short-form production, influencer programs,
-          paid amplification, community, and analytics.
-        </p>
-        <ul class="tags">
-          <li>Instagram</li><li>TikTok</li><li>LinkedIn</li><li>YouTube</li>
-          <li>Sprout</li><li>Canva</li><li>Adobe</li><li>GA4</li>
-        </ul>
+    <section id="about" class="section reveal">
+      <div class="container about">
+        <div>
+          <h2>About</h2>
+          <p>
+            I build social programs that deliver brand love and measurable growth. I’m hands-on with creative,
+            fluent in analytics, and comfortable leading cross-functional teams and agencies.
+          </p>
+          <ul class="tags">
+            <li>Instagram</li><li>TikTok</li><li>LinkedIn</li><li>YouTube</li>
+            <li>Sprout</li><li>Canva</li><li>Adobe</li><li>GA4</li>
+          </ul>
+        </div>
+        <aside class="timeline">
+          <h3>Selected Timeline</h3>
+          <ol>
+            <li><span>2024—Now</span> Fractional Social Lead, multiple startups</li>
+            <li><span>2021—2024</span> Social Lead, Cruise</li>
+            <li><span>2018—2021</span> Sr. Manager, Salesforce</li>
+            <li><span>2014—2018</span> Brand Social, T-Mobile & Starbucks</li>
+          </ol>
+        </aside>
       </div>
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="section">
+    <section id="contact" class="section reveal">
       <div class="container contact">
-        <h2>Contact</h2>
+        <h2>Let’s build something people love</h2>
         <p>Open to fractional leadership, audits, and campaign consulting.</p>
-        <div class="contact-actions">
-          <a class="btn" href="mailto:youremail@example.com?subject=Let’s%20work%20together">Email me</a>
+        <form class="contact-form" action="mailto:youremail@example.com" method="post" enctype="text/plain">
+          <div class="row">
+            <input aria-label="Your name" name="name" placeholder="Name" required>
+            <input aria-label="Your email" name="email" type="email" placeholder="Email" required>
+          </div>
+          <textarea aria-label="Your message" name="message" rows="4" placeholder="What are you working on?" required></textarea>
+          <button class="btn" type="submit">Send</button>
           <a class="btn btn--ghost" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
-        </div>
+        </form>
       </div>
     </section>
   </main>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
       <small>© <span id="y"></span> Dan — Social Media Leader</small>
+      <a class="backtotop" href="#top" aria-label="Back to top">↑</a>
     </div>
   </footer>
 
-  <script>
-    // current year
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
+  <!-- Case Study Modals -->
+  <dialog id="case1" class="modal">
+    <article>
+      <header><h3>Starbucks Seasonal Launch</h3><button class="close" data-close>×</button></header>
+      <p><b>Objective:</b> Drive seasonal drink adoption via culture-forward short-form.</p>
+      <p><b>Approach:</b> Creator collabs + modular Reel template + trend mapping.</p>
+      <p><b>Result:</b> +45% engagement QoQ, +18% saves, CPM ↓12% on paid boost.</p>
+    </article>
+  </dialog>
+
+  <dialog id="case2" class="modal">
+    <article>
+      <header><h3>T-Mobile 5G Community Push</h3><button class="close" data-close>×</button></header>
+      <p><b>Objective:</b> Make 5G feel human and useful at local level.</p>
+      <p><b>Approach:</b> Live social kit, UGC prompts, local creator takeovers.</p>
+      <p><b>Result:</b> 3.1M organic views; positive sentiment +22pts.</p>
+    </article>
+  </dialog>
+
+  <dialog id="case3" class="modal">
+    <article>
+      <header><h3>Salesforce Thought Leadership</h3><button class="close" data-close>×</button></header>
+      <p><b>Objective:</b> Grow exec visibility & pipeline via LI.</p>
+      <p><b>Approach:</b> POV engine + carousel design system + A/B hooks.</p>
+      <p><b>Result:</b> CTR +220% vs. benchmark; SQLs attributed from dark social.</p>
+    </article>
+  </dialog>
+
+  <script src="script.js?v=3"></script>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>
