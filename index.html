@@ -7,7 +7,7 @@
   <meta name="description" content="Award-winning social media leader. Strategy, content systems, and campaigns that build brand love." />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=5" />
+  <link rel="stylesheet" href="styles.css?v=6" />
 </head>
 <body>
   <!-- Decorative background -->
@@ -23,7 +23,6 @@
       <a class="logo" href="#top" aria-label="Home">Dan</a>
       <nav class="nav" aria-label="Primary">
         <a href="#brands">Brands</a>
-        <a href="#work">Work</a>
         <a href="#about">About</a>
         <a href="#contact" class="btn btn--small">Contact</a>
         <button class="mode" id="modeToggle" title="Toggle theme" aria-label="Toggle theme">◎</button>
@@ -50,52 +49,37 @@
       </div>
     </section>
 
+    <!-- Divider -->
+    <div class="section-divider"></div>
+
     <!-- BRANDS MARQUEE -->
     <section id="brands" class="section reveal">
       <div class="container">
         <div class="bar-title" role="heading" aria-level="2">
-          BRANDS I’VE WORKED WITH
+          Brands I’ve worked with
         </div>
 
         <div class="marquee" aria-label="Brands I’ve worked with">
           <div class="track">
-            <!-- Row -->
-            <figure class="brand-card">
-              <img src="logos/samsung.png" alt="Samsung" loading="lazy">
-            </figure>
-            <figure class="brand-card">
-              <img src="logos/tmobile.png" alt="T-Mobile" loading="lazy">
-            </figure>
-            <figure class="brand-card">
-              <img src="logos/starbucks.png" alt="Starbucks" loading="lazy">
-            </figure>
-            <figure class="brand-card">
-              <img src="logos/salesforce.png" alt="Salesforce" loading="lazy">
-            </figure>
-            <figure class="brand-card">
-              <img src="logos/cruise.png" alt="Cruise" loading="lazy">
-            </figure>
+            <figure class="brand-card"><img src="logos/samsung.png" alt="Samsung" loading="lazy"></figure>
+            <figure class="brand-card"><img src="logos/tmobile.png" alt="T-Mobile" loading="lazy"></figure>
+            <figure class="brand-card"><img src="logos/starbucks.png" alt="Starbucks" loading="lazy"></figure>
+            <figure class="brand-card"><img src="logos/salesforce.png" alt="Salesforce" loading="lazy"></figure>
+            <figure class="brand-card"><img src="logos/cruise.png" alt="Cruise" loading="lazy"></figure>
 
-            <!-- Duplicate row for seamless scroll -->
-            <figure class="brand-card" aria-hidden="true">
-              <img src="logos/samsung.png" alt="" loading="lazy">
-            </figure>
-            <figure class="brand-card" aria-hidden="true">
-              <img src="logos/tmobile.png" alt="" loading="lazy">
-            </figure>
-            <figure class="brand-card" aria-hidden="true">
-              <img src="logos/starbucks.png" alt="" loading="lazy">
-            </figure>
-            <figure class="brand-card" aria-hidden="true">
-              <img src="logos/salesforce.png" alt="" loading="lazy">
-            </figure>
-            <figure class="brand-card" aria-hidden="true">
-              <img src="logos/cruise.png" alt="" loading="lazy">
-            </figure>
+            <!-- Duplicate row for seamless loop -->
+            <figure class="brand-card" aria-hidden="true"><img src="logos/samsung.png" alt="" loading="lazy"></figure>
+            <figure class="brand-card" aria-hidden="true"><img src="logos/tmobile.png" alt="" loading="lazy"></figure>
+            <figure class="brand-card" aria-hidden="true"><img src="logos/starbucks.png" alt="" loading="lazy"></figure>
+            <figure class="brand-card" aria-hidden="true"><img src="logos/salesforce.png" alt="" loading="lazy"></figure>
+            <figure class="brand-card" aria-hidden="true"><img src="logos/cruise.png" alt="" loading="lazy"></figure>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- Divider -->
+    <div class="section-divider"></div>
 
     <!-- About -->
     <section id="about" class="section reveal">
@@ -111,6 +95,9 @@
         </ul>
       </div>
     </section>
+
+    <!-- Divider -->
+    <div class="section-divider"></div>
 
     <!-- Contact -->
     <section id="contact" class="section reveal">
@@ -138,7 +125,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=5"></script>
   <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>
