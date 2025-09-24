@@ -7,23 +7,302 @@
   <meta name="description" content="Award-winning social media leader. Strategy, content systems, and campaigns that build brand love." />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=6" />
+  <style>
+    :root {
+      --bg:#ffffff;
+      --surface:#fbfbfd;
+      --surface-2:#f3f4f7;
+      --ink:#16181d;
+      --muted:#5b616e;
+      --line:#e6e8ef;
+      --brand:#4A7CF2;
+      --brand-600:#335FDE;
+      --radius:14px;
+      --shadow:0 10px 30px rgba(22,24,29,.08), 0 2px 8px rgba(22,24,29,.05);
+    }
+
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .container { width: min(1140px, 92%); margin: 0 auto; }
+
+    h1,h2,h3,h4 { margin: 0 0 .6rem 0; line-height: 1.15; }
+    h1 { font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 800; }
+    h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 800; }
+    h3 { font-size: 1.4rem; font-weight: 700; }
+    p { color: var(--muted); margin: 0 0 1rem 0; }
+
+    /* Hero with more vertical space */
+    .hero { padding: 140px 0 80px; }
+    .hero-text { max-width: 720px; }
+
+    .badge {
+      display:inline-block;
+      background:linear-gradient(90deg, var(--brand) 0, #8FA7FF 100%);
+      color:#fff;
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:.9rem;
+      font-weight:600;
+      margin-bottom: 40px;
+    }
+
+    .hero-text h1 { margin-bottom: 28px; }
+    .lead { font-size: 1.1rem; }
+    .cta { margin-top: 40px; }
+
+    .btn {
+      display:inline-block;
+      background:var(--brand);
+      color:#fff;
+      text-decoration:none;
+      padding:12px 18px;
+      border-radius:10px;
+      font-weight:700;
+      border:none;
+      cursor:pointer;
+      box-shadow: var(--shadow);
+      transition: all 0.2s ease;
+    }
+    .btn:hover { background: var(--brand-600); transform: translateY(-1px); }
+    .btn--ghost { background:transparent; border:1px solid var(--line); color: var(--ink); }
+    .btn--small { padding: 8px 14px; font-size: 0.9rem; }
+
+    /* Header */
+    .site-header {
+      position:sticky; top:0; z-index:50;
+      background: rgba(255,255,255,.8);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+    .site-header .container {
+      display:flex; justify-content:space-between; align-items:center;
+      padding: 12px 0;
+    }
+    .logo { font-weight:800; text-decoration:none; color:var(--ink); font-size:1.2rem; }
+    .nav { display:flex; gap:18px; align-items:center; }
+    .nav a { text-decoration:none; color:var(--ink); transition: color 0.2s ease; }
+    .nav a:hover { color: var(--brand); }
+    .mode { border:1px solid var(--line); border-radius:50%; padding:6px 10px; background: var(--surface); }
+
+    /* Section divider */
+    .section-divider {
+      border-top: 1px solid var(--line);
+      margin: 40px auto 28px;
+      width: 60%;
+      opacity: 0.5;
+    }
+
+    .section { padding: 40px 0; }
+
+    /* Brands marquee */
+    .bar-title {
+      background: linear-gradient(90deg, var(--brand) 0, #8FA7FF 100%);
+      color: #fff;
+      font-weight: 700;
+      text-align: center;
+      font-size: 1.05rem;
+      padding: 14px 18px;
+      border-radius: 16px;
+      margin-bottom: 40px;
+      text-transform: none;
+    }
+
+    .marquee {
+      --gap: 60px;
+      --speed: 32s;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+    }
+
+    .track {
+      display: inline-flex;
+      gap: var(--gap);
+      align-items: center;
+      animation: scroll var(--speed) linear infinite;
+    }
+    .marquee:hover .track { animation-play-state: paused; }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .brand-card {
+      flex: 0 0 auto;
+      border: none;
+      background: transparent;
+      box-shadow: none;
+      padding: 20px;
+      margin: 0;
+      background: var(--surface);
+      border-radius: var(--radius);
+      min-width: 140px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    /* Select Works */
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    .work-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: all 0.3s ease;
+      border: 1px solid var(--line);
+    }
+
+    .work-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .work-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .work-brand {
+      font-size: 0.9rem;
+      color: var(--brand);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .work-year {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .work-title {
+      margin-bottom: 12px;
+      color: var(--ink);
+    }
+
+    .work-description {
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    .work-metrics {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+
+    .metric {
+      text-align: left;
+    }
+
+    .metric-value {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--ink);
+      display: block;
+    }
+
+    .metric-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .work-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      background: var(--surface-2);
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* Contact */
+    .contact-form { margin-top: 1rem; }
+    .contact-form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .contact-form input, .contact-form textarea {
+      width:100%; padding:12px 14px;
+      border-radius:10px; border:1px solid var(--line);
+      margin-bottom: 10px;
+      font-family: inherit;
+      transition: border-color 0.2s ease;
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--brand);
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--line);
+      padding: 18px 0;
+      background: var(--bg);
+      margin-top: 60px;
+    }
+    .site-footer .container {
+      display:flex; justify-content:space-between; align-items:center;
+    }
+
+    .backtotop {
+      text-decoration: none;
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
+    .backtotop:hover { color: var(--brand); }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav { gap: 12px; }
+      .works-grid { grid-template-columns: 1fr; }
+      .work-metrics { gap: 16px; }
+      .contact-form .row { grid-template-columns: 1fr; }
+    }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 <body>
-  <!-- Decorative background -->
-  <div class="backdrop" aria-hidden="true">
-    <span class="blob b1"></span>
-    <span class="blob b2"></span>
-    <span class="gridlines"></span>
-  </div>
-
   <!-- Header -->
   <header class="site-header" id="top">
     <div class="container">
-      <a class="logo" href="#top" aria-label="Home">Dan</a>
+      <a class="logo" href="index.html" aria-label="Home">Dan</a>
       <nav class="nav" aria-label="Primary">
-        <a href="#brands">Brands</a>
-        <a href="#about">About</a>
+        <a href="work.html">My Work</a>
+        <a href="about.html">About</a>
         <a href="#contact" class="btn btn--small">Contact</a>
         <button class="mode" id="modeToggle" title="Toggle theme" aria-label="Toggle theme">◎</button>
       </nav>
@@ -36,14 +315,15 @@
       <div class="container hero--single">
         <div class="hero-text">
           <span class="badge">Social Strategy · Digital Marketing</span>
-          <h1><strong>Hi, I’m Dan.</strong></h1>
+          <h1><strong>Hi, I'm Dan.</strong></h1>
           <p class="lead">
-            As a social media strategist, I’ve launched lattes, leveled up enterprise tech, and made robot cars feel relatable.
+            As a social media strategist, I've launched lattes, leveled up enterprise tech, and made robot cars feel relatable.
             After a decade of leading social campaigns at brands like <strong>Starbucks</strong>, <strong>T-Mobile</strong>,
             <strong>Salesforce</strong>, and <strong>Cruise</strong>, I know how to create content that actually builds brand love.
           </p>
           <div class="cta">
-            <a class="btn" href="#contact">Let’s talk</a>
+            <a class="btn" href="#contact">Let's talk</a>
+            <a class="btn btn--ghost" href="work.html" style="margin-left: 12px;">See my work</a>
           </div>
         </div>
       </div>
@@ -56,23 +336,29 @@
     <section id="brands" class="section reveal">
       <div class="container">
         <div class="bar-title" role="heading" aria-level="2">
-          Brands I’ve worked with
+          Brands I've worked with
         </div>
 
-        <div class="marquee" aria-label="Brands I’ve worked with">
+        <div class="marquee" aria-label="Brands I've worked with">
           <div class="track">
-            <figure class="brand-card"><img src="logos/samsung.png" alt="Samsung" loading="lazy"></figure>
-            <figure class="brand-card"><img src="logos/tmobile.png" alt="T-Mobile" loading="lazy"></figure>
-            <figure class="brand-card"><img src="logos/starbucks.png" alt="Starbucks" loading="lazy"></figure>
-            <figure class="brand-card"><img src="logos/salesforce.png" alt="Salesforce" loading="lazy"></figure>
-            <figure class="brand-card"><img src="logos/cruise.png" alt="Cruise" loading="lazy"></figure>
+            <figure class="brand-card">Starbucks</figure>
+            <figure class="brand-card">T-Mobile</figure>
+            <figure class="brand-card">Salesforce</figure>
+            <figure class="brand-card">Cruise</figure>
+            <figure class="brand-card">Samsung</figure>
+            <figure class="brand-card">Apple</figure>
+            <figure class="brand-card">Google</figure>
+            <figure class="brand-card">OnePlus</figure>
 
             <!-- Duplicate row for seamless loop -->
-            <figure class="brand-card" aria-hidden="true"><img src="logos/samsung.png" alt="" loading="lazy"></figure>
-            <figure class="brand-card" aria-hidden="true"><img src="logos/tmobile.png" alt="" loading="lazy"></figure>
-            <figure class="brand-card" aria-hidden="true"><img src="logos/starbucks.png" alt="" loading="lazy"></figure>
-            <figure class="brand-card" aria-hidden="true"><img src="logos/salesforce.png" alt="" loading="lazy"></figure>
-            <figure class="brand-card" aria-hidden="true"><img src="logos/cruise.png" alt="" loading="lazy"></figure>
+            <figure class="brand-card" aria-hidden="true">Starbucks</figure>
+            <figure class="brand-card" aria-hidden="true">T-Mobile</figure>
+            <figure class="brand-card" aria-hidden="true">Salesforce</figure>
+            <figure class="brand-card" aria-hidden="true">Cruise</figure>
+            <figure class="brand-card" aria-hidden="true">Samsung</figure>
+            <figure class="brand-card" aria-hidden="true">Apple</figure>
+            <figure class="brand-card" aria-hidden="true">Google</figure>
+            <figure class="brand-card" aria-hidden="true">OnePlus</figure>
           </div>
         </div>
       </div>
@@ -81,18 +367,129 @@
     <!-- Divider -->
     <div class="section-divider"></div>
 
-    <!-- About -->
-    <section id="about" class="section reveal">
+    <!-- SELECT WORKS -->
+    <section id="works" class="section reveal">
       <div class="container">
-        <h2>About</h2>
-        <p>
-          I build social programs that deliver brand love and measurable growth. I’m hands-on with creative,
-          fluent in analytics, and comfortable leading cross-functional teams and agencies.
-        </p>
-        <ul class="tags">
-          <li>Instagram</li><li>TikTok</li><li>LinkedIn</li><li>YouTube</li>
-          <li>Sprout</li><li>Canva</li><li>Adobe</li><li>GA4</li>
-        </ul>
+        <h2>Select Works</h2>
+        <p>A few campaigns that made an impact</p>
+        
+        <div class="works-grid">
+          <!-- Santa Calling Campaign -->
+          <div class="work-card">
+            <div class="work-header">
+              <span class="work-brand">T-Mobile</span>
+              <span class="work-year">2020</span>
+            </div>
+            <h3 class="work-title">Santa Calling Holiday Campaign</h3>
+            <p class="work-description">
+              Created a heartwarming social campaign connecting kids with virtual Santas during COVID lockdowns. 
+              The campaign brought joy to families while showcasing T-Mobile's connectivity message.
+            </p>
+            <div class="work-metrics">
+              <div class="metric">
+                <span class="metric-value">2M+</span>
+                <span class="metric-label">Organic Impressions</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">🏆</span>
+                <span class="metric-label">Shorty Award</span>
+              </div>
+            </div>
+            <div class="work-tags">
+              <span class="tag">Social Strategy</span>
+              <span class="tag">Holiday Campaign</span>
+              <span class="tag">Community</span>
+            </div>
+          </div>
+
+          <!-- Salesforce Commerce Cloud -->
+          <div class="work-card">
+            <div class="work-header">
+              <span class="work-brand">Salesforce</span>
+              <span class="work-year">2024</span>
+            </div>
+            <h3 class="work-title">Commerce Cloud Growth Strategy</h3>
+            <p class="work-description">
+              Developed comprehensive social strategy for Commerce Cloud, including Cyber Week campaigns. 
+              Created content systems that scaled across multiple channels and product lines.
+            </p>
+            <div class="work-metrics">
+              <div class="metric">
+                <span class="metric-value">197%</span>
+                <span class="metric-label">YoY Engagement Growth</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">70+</span>
+                <span class="metric-label">Campaign Assets</span>
+              </div>
+            </div>
+            <div class="work-tags">
+              <span class="tag">B2B Social</span>
+              <span class="tag">Content Strategy</span>
+              <span class="tag">Enterprise</span>
+            </div>
+          </div>
+
+          <!-- Starbucks Doubleshot -->
+          <div class="work-card">
+            <div class="work-header">
+              <span class="work-brand">Starbucks</span>
+              <span class="work-year">2017</span>
+            </div>
+            <h3 class="work-title">Doubleshot YouTube Series</h3>
+            <p class="work-description">
+              Launched a YouTube creator series featuring Unbox Therapy, MatPat, and Aaron Kyro. 
+              Strategic partnerships that authentically integrated the product into creator content.
+            </p>
+            <div class="work-metrics">
+              <div class="metric">
+                <span class="metric-value">1.2M</span>
+                <span class="metric-label">Video Views</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">7x</span>
+                <span class="metric-label">Follower Growth</span>
+              </div>
+            </div>
+            <div class="work-tags">
+              <span class="tag">Influencer Marketing</span>
+              <span class="tag">YouTube</span>
+              <span class="tag">Product Launch</span>
+            </div>
+          </div>
+
+          <!-- VidCon Experience -->
+          <div class="work-card">
+            <div class="work-header">
+              <span class="work-brand">Starbucks</span>
+              <span class="work-year">2018</span>
+            </div>
+            <h3 class="work-title">VidCon Experiential Activation</h3>
+            <p class="work-description">
+              Transformed a Starbucks location into an 'Instagrammable' destination for VidCon attendees. 
+              Seamlessly blended physical experience with social content creation.
+            </p>
+            <div class="work-metrics">
+              <div class="metric">
+                <span class="metric-value">🏆</span>
+                <span class="metric-label">AdWeek Campaign</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">125%</span>
+                <span class="metric-label">Engagement Lift</span>
+              </div>
+            </div>
+            <div class="work-tags">
+              <span class="tag">Experiential</span>
+              <span class="tag">Event Marketing</span>
+              <span class="tag">Instagram</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+          <a class="btn" href="work.html">View all work</a>
+        </div>
       </div>
     </section>
 
@@ -102,16 +499,16 @@
     <!-- Contact -->
     <section id="contact" class="section reveal">
       <div class="container contact">
-        <h2>Let’s build something people love</h2>
+        <h2>Let's build something people love</h2>
         <p>Open to fractional leadership, audits, and campaign consulting.</p>
-        <form class="contact-form" action="mailto:youremail@example.com" method="post" enctype="text/plain">
+        <form class="contact-form" action="mailto:daniel.lawrence.kirk@gmail.com" method="post" enctype="text/plain">
           <div class="row">
             <input aria-label="Your name" name="name" placeholder="Name" required>
             <input aria-label="Your email" name="email" type="email" placeholder="Email" required>
           </div>
           <textarea aria-label="Your message" name="message" rows="4" placeholder="What are you working on?" required></textarea>
           <button class="btn" type="submit">Send</button>
-          <a class="btn btn--ghost" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn btn--ghost" href="https://www.linkedin.com/" target="_blank" rel="noopener" style="margin-left: 12px;">LinkedIn</a>
         </form>
       </div>
     </section>
@@ -125,6 +522,29 @@
     </div>
   </footer>
 
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Reveal on scroll animation
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Theme toggle (basic version)
+    const modeToggle = document.getElementById('modeToggle');
+    modeToggle?.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      const next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+    });
+  </script>
 </body>
 </html>
