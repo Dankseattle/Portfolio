@@ -351,8 +351,7 @@
     <section class="filter-section">
       <div class="container">
         <div class="filters">
-          <button class="filter-btn active" data-filter="all">All Companies</button>
-          <button class="filter-btn" data-filter="salesforce">Salesforce</button>
+          <button class="filter-btn active" data-filter="salesforce">Salesforce</button>
           <button class="filter-btn" data-filter="tmobile">T-Mobile</button>
           <button class="filter-btn" data-filter="starbucks">Starbucks</button>
           <button class="filter-btn" data-filter="cruise">Cruise</button>
@@ -746,14 +745,10 @@
         const filter = btn.dataset.filter;
 
         companySections.forEach(section => {
-          if (filter === 'all') {
+          if (section.dataset.company === filter) {
             section.classList.remove('hidden');
           } else {
-            if (section.dataset.company === filter) {
-              section.classList.remove('hidden');
-            } else {
-              section.classList.add('hidden');
-            }
+            section.classList.add('hidden');
           }
         });
       });
