@@ -1,1 +1,541 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About Me — Dan Kirk</title>
+  <meta name="description" content="Social media strategist with 10+ years helping brands tell better stories online." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#ffffff;
+      --surface:#fbfbfd;
+      --surface-2:#f3f4f7;
+      --ink:#16181d;
+      --muted:#5b616e;
+      --line:#e6e8ef;
+      --brand:#4A7CF2;
+      --brand-600:#335FDE;
+      --radius:14px;
+      --shadow:0 10px 30px rgba(22,24,29,.08), 0 2px 8px rgba(22,24,29,.05);
+    }
 
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .container { width: min(1140px, 92%); margin: 0 auto; }
+
+    h1,h2,h3,h4 { margin: 0 0 .6rem 0; line-height: 1.15; }
+    h1 { font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 800; }
+    h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 800; }
+    h3 { font-size: 1.4rem; font-weight: 700; }
+    p { color: var(--muted); margin: 0 0 1rem 0; }
+
+    /* Header */
+    .site-header {
+      position:sticky; top:0; z-index:50;
+      background: rgba(255,255,255,.8);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+    .site-header .container {
+      display:flex; justify-content:space-between; align-items:center;
+      padding: 12px 0;
+    }
+    .logo { font-weight:800; text-decoration:none; color:var(--ink); font-size:1.2rem; }
+    .nav { display:flex; gap:18px; align-items:center; }
+    .nav a { text-decoration:none; color:var(--ink); transition: color 0.2s ease; }
+    .nav a:hover { color: var(--brand); }
+    .nav a.active { color: var(--brand); font-weight: 600; }
+
+    .btn {
+      display:inline-block;
+      background:var(--brand);
+      color:#fff;
+      text-decoration:none;
+      padding:12px 18px;
+      border-radius:10px;
+      font-weight:700;
+      border:none;
+      cursor:pointer;
+      box-shadow: var(--shadow);
+      transition: all 0.2s ease;
+    }
+    .btn:hover { background: var(--brand-600); transform: translateY(-1px); }
+    .btn--small { padding: 8px 14px; font-size: 0.9rem; }
+
+    /* About Hero */
+    .about-hero {
+      padding: 80px 0 60px;
+      background: var(--surface);
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .profile-image {
+      width: 300px;
+      height: 300px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      overflow: hidden;
+    }
+
+    .profile-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-text h1 {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .wave {
+      font-size: 2rem;
+    }
+
+    .about-text {
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .about-text p {
+      margin-bottom: 20px;
+    }
+
+    .highlight {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    /* Sections */
+    .section {
+      padding: 60px 0;
+    }
+
+    .section-border {
+      border-bottom: 1px solid var(--line);
+    }
+
+    /* Two Column Layout */
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+    }
+
+    /* Contact Info */
+    .contact-info {
+      background: var(--surface);
+      padding: 40px;
+      border-radius: var(--radius);
+      height: fit-content;
+    }
+
+    .contact-item {
+      margin-bottom: 24px;
+    }
+
+    .contact-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .contact-item strong {
+      display: block;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .contact-item a {
+      color: var(--brand);
+      text-decoration: none;
+    }
+
+    .contact-item a:hover {
+      text-decoration: underline;
+    }
+
+    /* Awards */
+    .awards-list {
+      margin-bottom: 40px;
+    }
+
+    .award-item {
+      background: var(--surface);
+      padding: 20px;
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      border-left: 4px solid var(--brand);
+    }
+
+    .award-title {
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .award-link {
+      color: var(--brand);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .award-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .skill-category {
+      background: var(--surface);
+      padding: 24px;
+      border-radius: var(--radius);
+    }
+
+    .skill-category h4 {
+      color: var(--ink);
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+
+    .skill-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .skill-list li {
+      color: var(--muted);
+      margin-bottom: 4px;
+      font-size: 0.9rem;
+    }
+
+    /* Education */
+    .education-item {
+      background: var(--surface);
+      padding: 24px;
+      border-radius: var(--radius);
+      margin-bottom: 16px;
+    }
+
+    .degree {
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .school {
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .education-item p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    /* Work Experience Timeline */
+    .timeline {
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--line);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 40px;
+      margin-bottom: 40px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 8px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--brand);
+    }
+
+    .job-title {
+      font-weight: 700;
+      color: var(--ink);
+      font-size: 1.1rem;
+    }
+
+    .company-date {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+    }
+
+    .job-highlights {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .job-highlights li {
+      color: var(--muted);
+      margin-bottom: 8px;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .job-highlights li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--brand);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+
+      .profile-image {
+        width: 250px;
+        height: 250px;
+        margin: 0 auto;
+      }
+
+      .two-column {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html">Dan</a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="work.html">My Work</a>
+        <a href="about.html" class="active">About</a>
+        <a href="index.html#contact" class="btn btn--small">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="about-hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="profile-image">
+            <img src="images/dan-profile.jpg" alt="Dan Kirk" />
+            <!-- Replace with your actual profile image -->
+          </div>
+          <div class="hero-text">
+            <h1><span class="wave">👋</span> A bit about me</h1>
+            <div class="about-text">
+              <p>Hi, I'm Dan Kirk—a social media strategist with 10+ years of experience helping brands tell better stories online. I've led social campaigns at household names like <span class="highlight">Starbucks</span>, <span class="highlight">T-Mobile</span>, and <span class="highlight">Salesforce</span>, and helped self-driving cars like <span class="highlight">Cruise</span> build trust (and a little personality) in the world of self-driving cars.</p>
+              
+              <p>I specialize in <span class="highlight">making complex topics feel simple</span>, and content that's creative, data-backed, and aligned with business goals. Whether it's launching a new product, navigating a brand crisis, or scaling community engagement, I bring a calm head, clear strategy, and creative instincts to the table.</p>
+              
+              <p>When I'm not working, I'm probably deep in a book, fly fishing, snowboarding, or exploring Seattle.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section class="section section-border">
+      <div class="container">
+        <div class="two-column">
+          <!-- Left Column: Contact & Awards -->
+          <div>
+            <div class="contact-info">
+              <h3>Contact</h3>
+              <div class="contact-item">
+                <strong>Email</strong>
+                <a href="mailto:daniel.lawrence.kirk@gmail.com">daniel.lawrence.kirk@gmail.com</a>
+              </div>
+              <div class="contact-item">
+                <strong>Phone</strong>
+                201-247-3012
+              </div>
+              <div class="contact-item">
+                <strong>Location</strong>
+                Seattle, WA
+              </div>
+            </div>
+
+            <h3 style="margin-top: 40px;">Awards</h3>
+            <div class="awards-list">
+              <div class="award-item">
+                <div class="award-title">Shorty Award Winner</div>
+                <a href="#" class="award-link">Santa Calling Campaign</a>
+              </div>
+              <div class="award-item">
+                <div class="award-title">AdWeek Experiential Campaign of the Year 2021</div>
+                <a href="#" class="award-link">Go Farther</a>
+              </div>
+            </div>
+
+            <h3>Skills</h3>
+            <div class="skills-grid">
+              <div class="skill-category">
+                <h4>Strategy & Execution</h4>
+                <ul class="skill-list">
+                  <li>Social strategy & execution</li>
+                  <li>Creative strategy</li>
+                  <li>Community management</li>
+                  <li>Social listening</li>
+                </ul>
+              </div>
+              <div class="skill-category">
+                <h4>Analytics & Management</h4>
+                <ul class="skill-list">
+                  <li>Analytics and reporting</li>
+                  <li>Influencer management</li>
+                  <li>Crisis management</li>
+                  <li>Copywriting</li>
+                </ul>
+              </div>
+              <div class="skill-category">
+                <h4>Creative & Tools</h4>
+                <ul class="skill-list">
+                  <li>Graphic design</li>
+                  <li>Video editing</li>
+                  <li>Sprout, Sprinklr, Opal</li>
+                  <li>BrandWatch, etc</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3>Education</h3>
+            <div class="education-item">
+              <div class="degree">Master of Communication, Digital Media</div>
+              <div class="school">University of Washington</div>
+              <p>2012 - 2014</p>
+            </div>
+            <div class="education-item">
+              <div class="degree">Bachelors, Journalism & Media Studies</div>
+              <div class="school">Rutgers University</div>
+              <p>2008 - 2012</p>
+            </div>
+          </div>
+
+          <!-- Right Column: Work Experience -->
+          <div>
+            <h2>Work Experience</h2>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="job-title">Social Media Manager</div>
+                <div class="company-date">Salesforce | Seattle, WA | 2024 - Present</div>
+                <ul class="job-highlights">
+                  <li>Managed Commerce Cloud social media channels, responsible for strategy, community management, reporting, content creation, and events.</li>
+                  <li>Marketing lead for Cyber Week, developing strategy and content for Salesforce social media channels. Created over 70 social posts and delivered engagement rate 30% above previous year.</li>
+                  <li>Created a new content strategy, resulting in YoY growth of 197% for engagements, and 128% for engagement rate.</li>
+                  <li>Owned event social strategy and content creation, cover major events like Dreamforce, surpassing benchmarks by 215%.</li>
+                  <li>Increased our webinar registrations 50% through engaging video content and close partnership with product team.</li>
+                </ul>
+              </div>
+
+              <div class="timeline-item">
+                <div class="job-title">Senior Social Media Manager</div>
+                <div class="company-date">Cruise | Seattle, WA (Remote) | 2022 - 2024</div>
+                <ul class="job-highlights">
+                  <li>Improved social impressions 73% and engagements 359% over previous year by developing, testing and optimizing new platform and content strategies.</li>
+                  <li>Grew social audiences 75% through insight driven content and community management.</li>
+                  <li>Implemented a new briefing process, resulting in a 140% increase in social content over previous year.</li>
+                  <li>Lead crisis communications on social media for over 50 incidents, partnering with communications team to craft strategy, statement, and reported results to leadership.</li>
+                </ul>
+              </div>
+
+              <div class="timeline-item">
+                <div class="job-title">Senior Social Media Strategist</div>
+                <div class="company-date">T-Mobile | Bellevue, WA | 2019 - 2021</div>
+                <ul class="job-highlights">
+                  <li>Social media lead for new product announcements, working with partners like Apple, Google and Samsung, and produced the brand's highest engaging Instagram post of the year.</li>
+                  <li>Lead social strategy for the 'Santa Calling' social campaign, which connected kids with virtual Santas for the Holidays during COVID, earning over 2M organic impressions and Shorty Award.</li>
+                  <li>Lead the 'Go Farther' social campaign in partnership with OnePlus to create a digital scavenger hunt that exceeded engagement benchmarks by over 125%.</li>
+                </ul>
+              </div>
+
+              <div class="timeline-item">
+                <div class="job-title">Social Media Strategist</div>
+                <div class="company-date">Starbucks | Seattle, WA | 2015 - 2018</div>
+                <ul class="job-highlights">
+                  <li>Developed and implemented a new social strategy for Doubleshot social channels, growing them to over 300K followers in first year.</li>
+                  <li>Created a YouTube series for Doubleshot that featured YouTubers Unbox Therapy, MatPat and Aaron Kyro. Videos garnered 1.2 million views and grew our following 7X.</li>
+                  <li>Lead strategy and execution for an experiential activation at VidCon, turning a Starbucks store into an 'instagrammable' destination for attendees.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Reveal animation
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+  </script>
+</body>
+</html>
