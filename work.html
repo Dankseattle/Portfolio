@@ -542,6 +542,8 @@
         </div>
       </div>
     </section>
+
+    <!-- T-Mobile -->
     <section class="company-section reveal" data-company="tmobile">
       <div class="container">
         <div class="company-header">
@@ -726,98 +728,6 @@
         </div>
       </div>
     </section>
-
-    <!-- Cruise -->
-    <section class="company-section reveal" data-company="cruise">
-      <div class="container">
-        <div class="company-header">
-          <div class="company-logo">
-            <img src="logos/cruise.png" alt="Cruise">
-          </div>
-          <div class="company-info">
-            <h2>Cruise</h2>
-            <div class="company-meta">Sr. Social Media Manager • Jan 2022 - Jan 2024</div>
-          </div>
-        </div>
-
-        <div class="projects-grid">
-          <div class="project-card">
-            <div class="project-media">
-              <div class="placeholder">Crisis Communication Strategy</div>
-            </div>
-            <div class="project-content">
-              <h3 class="project-title">Crisis Communications</h3>
-              <p class="project-description">Lead crisis communications on social media for 50+ incidents, partnering with communications team to craft strategy and statements.</p>
-              <div class="project-metrics">
-                <div class="metric-small">
-                  <span class="value">50+</span>
-                  <span class="label">Incidents Managed</span>
-                </div>
-                <div class="metric-small">
-                  <span class="value">359%</span>
-                  <span class="label">Engagement Growth</span>
-                </div>
-              </div>
-              <div class="project-tags">
-                <span class="tag-small">Crisis Comms</span>
-                <span class="tag-small">Leadership</span>
-                <span class="tag-small">Strategy</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-card">
-            <div class="project-media">
-              <div class="placeholder">Social Impressions Growth</div>
-            </div>
-            <div class="project-content">
-              <h3 class="project-title">Platform Growth Strategy</h3>
-              <p class="project-description">Improved social impressions 73% and engagements 359% through developing and optimizing new platform strategies.</p>
-              <div class="project-metrics">
-                <div class="metric-small">
-                  <span class="value">73%</span>
-                  <span class="label">Impressions Growth</span>
-                </div>
-                <div class="metric-small">
-                  <span class="value">75%</span>
-                  <span class="label">Audience Growth</span>
-                </div>
-              </div>
-              <div class="project-tags">
-                <span class="tag-small">Growth Strategy</span>
-                <span class="tag-small">Optimization</span>
-                <span class="tag-small">Analytics</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-card">
-            <div class="project-media">
-              <div class="placeholder">Content Production Process</div>
-            </div>
-            <div class="project-content">
-              <h3 class="project-title">Content Process Innovation</h3>
-              <p class="project-description">Implemented new briefing process resulting in 140% increase in social content over previous year.</p>
-              <div class="project-metrics">
-                <div class="metric-small">
-                  <span class="value">140%</span>
-                  <span class="label">Content Increase</span>
-                </div>
-                <div class="metric-small">
-                  <span class="value">New</span>
-                  <span class="label">Process Built</span>
-                </div>
-              </div>
-              <div class="project-tags">
-                <span class="tag-small">Process</span>
-                <span class="tag-small">Efficiency</span>
-                <span class="tag-small">Team Leadership</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <script>
@@ -861,7 +771,6 @@
     document.querySelectorAll('.project-card').forEach(card => {
       card.addEventListener('click', () => {
         const title = card.querySelector('.project-title').textContent;
-        // Here you could open a modal, navigate to detail page, etc.
         console.log('Clicked project:', title);
       });
     });
